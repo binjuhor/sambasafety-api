@@ -7,6 +7,8 @@ namespace Binjuhor\SambasafetyApi;
 use Binjuhor\SambasafetyApi\Services\DriverService;
 use Binjuhor\SambasafetyApi\Services\FleetService;
 use Binjuhor\SambasafetyApi\Services\MvrService;
+use Binjuhor\SambasafetyApi\Services\AuthService;
+use Binjuhor\SambasafetyApi\Services\LicenseDiscoveryService;
 
 class SambaSafety
 {
@@ -14,6 +16,8 @@ class SambaSafety
     private ?DriverService $drivers = null;
     private ?FleetService $fleets = null;
     private ?MvrService $mvr = null;
+    private ?AuthService $auth = null;
+    private ?LicenseDiscoveryService $licenseDiscovery = null;
 
     public function __construct(
         string $apiKey,
@@ -48,6 +52,24 @@ class SambaSafety
         }
 
         return $this->mvr;
+    }
+
+    public function auth(): AuthService
+    {
+        if ($this->auth === null) {
+            $this->auth = new AuthService($this->client);
+        }
+
+        return $this->auth;
+    }
+
+    public function licenseDiscovery(): LicenseDiscoveryService
+    {
+        if ($this->licenseDiscovery === null) {
+            $this->licenseDiscovery = new LicenseDiscoveryService($this->client);
+        }
+
+        return $this->licenseDiscovery;
     }
 
     public function getClient(): SambaSafetyClient

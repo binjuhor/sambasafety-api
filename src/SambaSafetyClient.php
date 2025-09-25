@@ -85,6 +85,11 @@ class SambaSafetyClient
         return $this->makeRequest('DELETE', $endpoint);
     }
 
+    public function getBaseUrl(): string
+    {
+        return $this->baseUrl;
+    }
+
     private function makeRequest(string $method, string $endpoint, array $options = []): array
     {
         try {
