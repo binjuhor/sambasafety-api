@@ -62,6 +62,29 @@ class SambaSafetyClient
         return $this->makeRequest('POST', $endpoint, $options);
     }
 
+    public function put(string $endpoint, array $data = []): array
+    {
+        $options = [];
+        if (!empty($data)) {
+            $options[RequestOptions::JSON] = $data;
+        }
+        return $this->makeRequest('PUT', $endpoint, $options);
+    }
+
+    public function patch(string $endpoint, array $data = []): array
+    {
+        $options = [];
+        if (!empty($data)) {
+            $options[RequestOptions::JSON] = $data;
+        }
+        return $this->makeRequest('PATCH', $endpoint, $options);
+    }
+
+    public function delete(string $endpoint): array
+    {
+        return $this->makeRequest('DELETE', $endpoint);
+    }
+
     private function makeRequest(string $method, string $endpoint, array $options = []): array
     {
         try {

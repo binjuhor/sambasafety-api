@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Binjuhor\SambasafetyApi\Models;
 
-use DateTime;
-use DateTimeInterface;
-
 class Driver
 {
     public string $id;
